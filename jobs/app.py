@@ -1,6 +1,5 @@
 import sqlite3
-from flask import Flask,g
-from flask import render_template
+from flask import Flask,g , render_template
 PATH = '../db/jobs.sqlite'
 app = Flask(__name__)
 
