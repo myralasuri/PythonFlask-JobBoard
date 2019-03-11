@@ -6,7 +6,6 @@ PATH = 'db/jobs.sqlite'
 app = Flask(__name__)
 
 def open_connection():
-    connection =None
     connection = getattr(g, '_connection', default=None)
     if connection == None :
         connection = g._connection = sqlite3.connect(PATH)
