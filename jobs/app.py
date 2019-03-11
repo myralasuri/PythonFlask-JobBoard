@@ -1,15 +1,16 @@
 import sqlite3
 from flask import Flask,g
 from flask import render_template
+PATH = '../db/jobs.sqlite'
 app = Flask(__name__)
 
-PATH = '../db/jobs.sqlite'
+
 def open_connection():
     connection =None
-    connection = getattr(g._connection, default=None)
+    connection = getattr(g, '_connection', default=None)
     if connection is None :
-        connection, g._connection = sqlite3.connect(PATH)
-        connection.row_factory = sqlite3.Row
+        connection = g._connection = sqlite3.connect(PATH)
+    connection.row_factory = sqlite3.Row
     return connection
 
 def execute_sql(sql, values = (), commit =False, single =False):
